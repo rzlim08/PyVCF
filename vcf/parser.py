@@ -693,7 +693,7 @@ class Writer(object):
     def write_record(self, record):
         """ write a record to the file """
         ffs = self._map(str, [record.CHROM, record.POS, record.ID, record.REF]) \
-              + [self._format_alt(record.ALT), record.QUAL or '.', self._format_filter(record.FILTER),
+              + [self._format_alt(record.ALT), record.QUAL or (0. if record.QUAL == 0. else '.'), self._format_filter(record.FILTER),
                  self._format_info(record.INFO)]
         if record.FORMAT:
             ffs.append(record.FORMAT)
